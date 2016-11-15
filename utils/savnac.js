@@ -1,8 +1,8 @@
 // Local dependency functions
 // ________________________________________________________
 
-String.prototype.capitalizeFirstLetter = function() {
-  return `${this.charAt(0).toUpperCase()}${this.slice(1)}`;
+const capitalizeFirstLetter = (string) {
+  return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 }
 
 const toggleSingleClass = (el, className) => {
@@ -196,10 +196,11 @@ const getCssEndEvent = (property) => {
   let o;
   let el = document.createElement('fakeelement');
   let options = {};
+  let capitalizedProperty = capitalizedProperty(property);
   options[`${property}`] = `${property}`;
-  options[`O${property.capitalizeFirstLetter()}`] = `o${property.capitalizeFirstLetter()}End`;
-  options[`${property.capitalizeFirstLetter()}`] = `${property}end`;
-  options[`${property.capitalizeFirstLetter()}`] = `webkit${property.capitalizeFirstLetter()}End`;
+  options[`O${capitalizedProperty}`] = `o${capitalizedProperty}End`;
+  options[`${capitalizedProperty}`] = `${property}end`;
+  options[`${capitalizedProperty}`] = `webkit${capitalizedProperty}End`;
 
   for (o in options) {
     if (el.style[o] !== undefined) {
