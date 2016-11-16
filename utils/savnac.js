@@ -185,6 +185,7 @@ const throttle = (delay, no_trailing, callback, debounce_mode) => {
 /**
  * Determines the correct event that corresponds with CSS transitionend or animationend.
  * The argument can only be 'transition' or 'animation'. Returns false if none found.
+ *
  * @param  {String} property CSS property to get browser-specific event
  * @return {String}
  */
@@ -196,7 +197,7 @@ const getCssEndEvent = (property) => {
   let el = document.createElement('fakeelement');
   let options = {};
   let capitalizedProperty = capitalizeFirstLetter(property);
-  options[`${property}`] = `${property}`;
+  options[`${property}`] = `${property}end`;
   options[`O${capitalizedProperty}`] = `o${capitalizedProperty}End`;
   options[`${capitalizedProperty}`] = `${property}end`;
   options[`${capitalizedProperty}`] = `webkit${capitalizedProperty}End`;
