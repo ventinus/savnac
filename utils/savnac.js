@@ -117,13 +117,13 @@ const debounce = (func, wait, immediate) => {
     const later = () => {
       timeout = null;
       if (!immediate) func.apply(context, args);
-    };
+    }
     let callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
-  };
-};
+  }
+}
 
 /**
  * Limits the rate of executions for a recurring event. Source: https://gist.github.com/epitron/5936762
@@ -160,11 +160,11 @@ const throttle = (delay, no_trailing, callback, debounce_mode) => {
     function exec() {
       last_exec = +new Date();
       callback.apply(that, args);
-    };
+    }
 
     function clear() {
       timeout_id = undefined;
-    };
+    }
 
     if (debounce_mode && !timeout_id) exec();
 
@@ -175,7 +175,7 @@ const throttle = (delay, no_trailing, callback, debounce_mode) => {
     } else if (no_trailing !== true) {
       timeout_id = setTimeout( debounce_mode ? clear : exec, debounce_mode === undefined ? delay - elapsed : delay );
     }
-  };
+  }
 
   if ($.guid)
     wrapper.guid = callback.guid = callback.guid || $.guid++;
@@ -196,7 +196,7 @@ const getCssEndEvent = (property) => {
   let o;
   let el = document.createElement('fakeelement');
   let options = {};
-  let capitalizedProperty = capitalizedProperty(property);
+  let capitalizedProperty = capitalizeFirstLetter(property);
   options[`${property}`] = `${property}end`;
   options[`O${capitalizedProperty}`] = `o${capitalizedProperty}End`;
   options[`${capitalizedProperty}`] = `${property}end`;
