@@ -10,6 +10,10 @@ const toggleSingleClass = (el, className) => {
   return el;
 }
 
+const _now = Date.now || function() {
+  return new Date().getTime();
+}
+
 
 // Core Build of exports
 // ________________________________________________________
@@ -150,46 +154,53 @@ const debounce = (func, wait, immediate) => {
  * @param {Something} debounce_mode [description]
  * @return {Function}
  */
-const throttle = (delay, no_trailing, callback, debounce_mode) => {
-  let timeout_id,
-    last_exec = 0;
-
-  if (typeof no_trailing !== 'boolean') {
-    debounce_mode = callback;
-    callback = no_trailing;
-    no_trailing = undefined;
-  }
-
-  function wrapper() {
-    let that = this,
-      elapsed = +new Date() - last_exec,
+/**
+ * Limits the rate of executions for a recurring event.
+ * Returns a function, that, when invoked, will only be
+ * triggered at most once during a given window of time.
+ * Normally, the throttled function will run as much as
+ * it can, without ever going more than once per wait
+ * duration; but if you’d like to disable the execution
+ * on the leading edge, pass {leading: false}. To disable
+ * execution on the trailing edge, ditto.
+ * Source: http://underscorejs.org/docs/underscore.html
+ *
+ * @param  {Function} func  Function to execute
+ * @param  {Number} wait    Time between executions
+ * @param  {Object} options Options to pass to the throttle function
+ * @return {Function}       Throttled function
+ */
+const throttle = (func, wait, options) => {
+    let context, args, result;
+    let timeout = null;
+    let previous = 0;
+    if (!options) options = {};
+    const later = function() {
+      previous = options.leading === false ? 0 : _now();
+      timeout = null;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    };
+    return function() {
+      let now = _now();
+      if (!previous && options.leading === false) previous = now;
+      let remaining = wait - (now - previous);
+      context = this;
       args = arguments;
-
-    function exec() {
-      last_exec = +new Date();
-      callback.apply(that, args);
-    }
-
-    function clear() {
-      timeout_id = undefined;
-    }
-
-    if (debounce_mode && !timeout_id) exec();
-
-    if (timeout_id) { clearTimeout(timeout_id) }
-
-    if (debounce_mode === undefined && elapsed > delay) {
-      exec();
-    } else if (no_trailing !== true) {
-      timeout_id = setTimeout( debounce_mode ? clear : exec, debounce_mode === undefined ? delay - elapsed : delay );
-    }
-  }
-
-  if ($.guid)
-    wrapper.guid = callback.guid = callback.guid || $.guid++;
-
-  return wrapper;
-};
+      if (remaining <= 0 || remaining > wait) {
+        if (timeout) {
+          clearTimeout(timeout);
+          timeout = null;
+        }
+        previous = now;
+        result = func.apply(context, args);
+        if (!timeout) context = args = null;
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+  };
 
 /**
  * Determines the correct event that corresponds with CSS transitionend or animationend.
