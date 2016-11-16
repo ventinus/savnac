@@ -17,6 +17,7 @@ const toggleSingleClass = (el, className) => {
 
 /**
  * Adds an event listener to a selection of elements
+ *
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to bind to
  * @param  {Function} Callback to execute when event occurs
@@ -32,6 +33,7 @@ const addEvent = (els, eventName, callback, options = {}) => {
 
 /**
  * Removes an event listener to a selection of elements
+ *
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to unbind to
  * @param  {Function} Callback to unbind
@@ -47,6 +49,7 @@ const removeEvent = (els, eventName, callback, options = {}) => {
 
 /**
  * Adds a class to a set of elements
+ *
  * @param  {DOM Elements} Element collection to add a class to
  * @param  {String} Class desired to add
  * @return {DOM Elements}
@@ -60,6 +63,7 @@ const addClass = (els, className) => {
 
 /**
  * Removes a class from a set of elements
+ *
  * @param  {DOM Elements} Element collection to remove class from
  * @param  {String} Class desired to remove
  * @return {DOM Elements}
@@ -73,6 +77,7 @@ const removeClass = (els, className) => {
 
 /**
  * Toggles the class of an element or a collection of DOM elements
+ *
  * @param  {DOM Element(s)} Element or collection of elements to toggleClass
  * @param  {String} Class to toggle on each element
  * @return {DOM Elements}
@@ -86,10 +91,10 @@ const toggleClass = (els, className) => {
   return els;
 }
 
-// returns the index of the element in a set of elements
 /**
  * Finds the index of an element in a collection of elements.
  * Returns -1 in the event the element is not found.
+ *
  * @param  {DOM Elements} Collection of elements to search through
  * @param  {DOM Element} Element to find the index of
  * @return {Integer}
@@ -105,6 +110,7 @@ const elementIndex = (els, element) => {
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered.
  * Source: https://davidwalsh.name/javascript-debounce-function (also Underscore.js)
+ *
  * @param  {Function} func Function to execute once from a repeated event
  * @param  {Number} wait Triggers the function after N milliseconds
  * @param  {Boolean} immmediate If true, triggers the function on the leading edge instead of the trailing
@@ -128,6 +134,7 @@ const debounce = (func, wait, immediate) => {
 /**
  * Limits the rate of executions for a recurring event. Source: https://gist.github.com/epitron/5936762
  * Returns a new, throttled, function.
+ *
  * @param  {Number} delay A zero-or-greater delay in milliseconds. For event
  *                  callbacks, values around 100 or 250 (or even higher) are most useful.
  * @param  {Boolean} no_trailing Optional, defaults to false. If no_trailing is
@@ -186,6 +193,7 @@ const throttle = (delay, no_trailing, callback, debounce_mode) => {
 /**
  * Determines the correct event that corresponds with CSS transitionend or animationend.
  * The argument can only be 'transition' or 'animation'. Returns false if none found.
+ *
  * @param  {String} property CSS property to get browser-specific event
  * @return {String}
  */
@@ -214,6 +222,7 @@ const getCssEndEvent = (property) => {
  * Traverses up the DOM tree to find a parent element by checking the
  * classList of the parentElement against the targetClass. Returns -1
  * if none found.
+ *
  * @param  {DOM Element} startElement Starting element to start the search from
  * @param  {String} targetClass Class name to find the parentElement by
  * @return {DOM Element} Found parent element
@@ -239,5 +248,7 @@ export {
   debounce,
   throttle,
   getCssEndEvent,
-  findParentElement
+  findParentElement,
+  capitalizeFirstLetter,
+  toggleSingleClass
 };
