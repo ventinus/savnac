@@ -55,8 +55,7 @@ const removeEvent = (els, eventName, callback, options = {}) => {
  */
 const addClass = (els, className) => {
   for (let el of els) {
-    console.log(el);
-    // el.classList.add(className);
+    el.classList.add(className);
   }
   return els;
 }
