@@ -1,7 +1,7 @@
 // Local dependency functions
 // ________________________________________________________
 const capitalizeFirstLetter = (string) => {
-  return '${string.charAt(0).toUpperCase()}${string.slice(1)}';
+  return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 }
 
 const toggleSingleClass = (el, className) => {
@@ -97,7 +97,7 @@ const toggleClass = (els, className) => {
  * @return {Integer}
  */
 const elementIndex = (els, element) => {
-  return [...els].indexOf(element)
+  return [...els].indexOf(element);
 }
 
 /**
