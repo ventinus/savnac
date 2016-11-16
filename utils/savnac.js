@@ -197,7 +197,7 @@ const getCssEndEvent = (property) => {
   let el = document.createElement('fakeelement');
   let options = {};
   let capitalizedProperty = capitalizedProperty(property);
-  options[`${property}`] = `${property}`;
+  options[`${property}`] = `${property}end`;
   options[`O${capitalizedProperty}`] = `o${capitalizedProperty}End`;
   options[`${capitalizedProperty}`] = `${property}end`;
   options[`${capitalizedProperty}`] = `webkit${capitalizedProperty}End`;
