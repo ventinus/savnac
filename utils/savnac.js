@@ -98,7 +98,6 @@ const toggleClass = (els, className) => {
   return els;
 }
 
-// returns the index of the element in a set of elements
 /**
  * Finds the index of an element in a collection of elements.
  * Returns -1 in the event the element is not found.
@@ -128,13 +127,13 @@ const debounce = (func, wait, immediate) => {
     const later = () => {
       timeout = null;
       if (!immediate) func.apply(context, args);
-    };
+    }
     let callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
-  };
-};
+  }
+}
 
 /**
  * Limits the rate of executions for a recurring event.
@@ -162,7 +161,7 @@ const throttle = (func, wait, options) => {
       timeout = null;
       result = func.apply(context, args);
       if (!timeout) context = args = null;
-    };
+    }
     return function() {
       let now = _now();
       if (!previous && options.leading === false) previous = now;
@@ -181,8 +180,8 @@ const throttle = (func, wait, options) => {
         timeout = setTimeout(later, remaining);
       }
       return result;
-    };
-  };
+    }
+  }
 
 /**
  * Determines the correct event that corresponds with CSS transitionend or animationend.
@@ -232,6 +231,108 @@ const findParentElement = (startElement, targetClass) => {
   return findParentElement(parentElement, targetClass);
 }
 
+/**
+ * Creates a JS controller with our typical rails pattern. All arguments are optional
+ * but it would be useless if there weren't any. Options will eventually
+ * include potential callbacks to execute at different points of the
+ * controller lifecycle.
+ *
+ * @param  {Object} modules           Collection of modules (optional)
+ * @param  {Object} windowLoadModules Collection of modules to execute on windowLoad (optional)
+ * @param  {Object} options           Various callbacks to execute throughout lifecycle
+ * @return {Object}                   Publicly exposed functions
+ */
+const controller = (
+  modules = {},
+  windowLoadModules = {},
+  options = {}
+) => {
+  let props = {
+    isEnabled: false,
+    isWindowLoadEnabled: false,
+    modules: modules,
+    windowLoadModules: windowLoadModules
+  };
+
+  // Verify options are passed correctly and combine with default options
+  options = Object.assign({}, {
+    onCreation: () => {},
+    onInit: () => {},
+    onWindowLoadInit: () => {},
+    onEnable: () => {},
+    onDisable: () => {}
+  }, options);
+
+  options.onCreation();
+
+  const mergeModules = () => { return Object.assign({}, props.modules, props.windowLoadModules); }
+
+  const initModuleSet = (moduleGroup) => {
+    for (let module in props[moduleGroup]) {
+      // check if module is a function which means it hasn't been created
+      // since modules return an object, they become objects with methods
+      if (!props[moduleGroup][module].init) props[moduleGroup][module] = props[moduleGroup][module]();
+      props[moduleGroup][module].init();
+    }
+
+    return;
+  }
+
+  const init = () => {
+    options.onInit();
+    enable();
+    return;
+  }
+
+  const initWindowLoad = () => {
+    initModuleSet('windowLoadModules');
+    options.onWindowLoadInit();
+    props.isWindowLoadEnabled = true;
+    return;
+  }
+
+  const enable = () => {
+    if (props.isEnabled) return;
+
+    initModuleSet('modules');
+
+    options.onEnable();
+
+    props.isEnabled = true;
+
+    return;
+  }
+
+  const disable = () => {
+    if (!props.isEnabled) return;
+
+    for (let module in props.modules) {
+      props.modules[module].disable();
+    }
+
+    if (props.isWindowLoadEnabled) {
+      for (let module in props.windowLoadModules) {
+        props.windowLoadModules[module].disable();
+      }
+    }
+
+    options.onDisable();
+
+    props.isEnabled = false;
+    props.isWindowLoadEnabled = false;
+
+    return;
+  }
+
+  return {
+    init,
+    initWindowLoad,
+    enable,
+    disable,
+    modules: mergeModules
+  };
+}
+
 
 export {
   addEvent,
@@ -245,5 +346,6 @@ export {
   getCssEndEvent,
   findParentElement,
   capitalizeFirstLetter,
-  toggleSingleClass
+  toggleSingleClass,
+  controller
 };
