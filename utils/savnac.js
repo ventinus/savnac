@@ -29,9 +29,9 @@ const _now = Date.now || function() {
  * @return {DOM Elements}
  */
 const addEvent = (els, eventName, callback, options = {}) => {
-  for (let el of els) {
+  [...els].forEach(el => {
     el.addEventListener(eventName, callback, options);
-  }
+  })
   return els;
 }
 
@@ -45,9 +45,9 @@ const addEvent = (els, eventName, callback, options = {}) => {
  * @return {DOM Elements}
  */
 const removeEvent = (els, eventName, callback, options = {}) => {
-  for (let el of els) {
+  [...els].forEach(el => {
     el.removeEventListener(eventName, callback, options);
-  }
+  })
   return els;
 }
 
@@ -59,9 +59,9 @@ const removeEvent = (els, eventName, callback, options = {}) => {
  * @return {DOM Elements}
  */
 const addClass = (els, className) => {
-  for (let el of els) {
+  [...els].forEach(el => {
     el.classList.add(className);
-  }
+  })
   return els;
 }
 
@@ -73,9 +73,9 @@ const addClass = (els, className) => {
  * @return {DOM Elements}
  */
 const removeClass = (els, className) => {
-  for (let el of els) {
+  [...els].forEach(el => {
     el.classList.remove(className);
-  }
+  })
   return els;
 }
 
@@ -90,9 +90,9 @@ const toggleClass = (els, className) => {
   if (!els.length) {
     toggleSingleClass(els, className);
   } else {
-    for (let el of els) {
+    [...els].forEach(el => {
       toggleSingleClass(el, className);
-    }
+    })
   }
 
   return els;
