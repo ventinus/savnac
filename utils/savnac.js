@@ -1,17 +1,44 @@
-// Local dependency functions
+// Local dependency functions and constants
 // ________________________________________________________
+const CONSTANTS = {
+  ADD: 'add',
+  REMOVE: 'remove',
+  ADD_EVENT_LISTENER: 'addEventListener',
+  REMOVE_EVENT_LISTENER: 'removeEventListener'
+};
+
+// Accepts a string and returns it with the first letter capitalized
 const capitalizeFirstLetter = (string) => {
   return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 }
 
-const toggleSingleClass = (el, className) => {
-  let action = el.classList.contains(className) ? 'remove' : 'add';
-  el.classList[action](className);
-  return el;
-}
-
+// Gets the current timestamp
 const _now = Date.now || function() {
   return new Date().getTime();
+}
+
+// Consolidates looping over set of element to add or remove and event listener
+const addRemoveEvent = (action, els, eventName, callback, options = {}) => {
+  [...els].forEach(el => {
+    el[action](eventName, callback, options);
+  })
+  return els;
+}
+
+// Consolidates looping over set of element to add or remove a class
+const addRemoveClass = (action, els, className) => {
+  [...els].forEach(el => {
+    el.classList[action](className);
+  })
+  return els;
+}
+
+// Toggles the class or an element
+const toggleSingleClass = (el, className) => {
+  let { ADD, REMOVE } = CONSTANTS;
+  let action = el.classList.contains(className) ? REMOVE : ADD;
+  el.classList[action](className);
+  return el;
 }
 
 
@@ -29,10 +56,7 @@ const _now = Date.now || function() {
  * @return {DOM Elements}
  */
 const addEvent = (els, eventName, callback, options = {}) => {
-  [...els].forEach(el => {
-    el.addEventListener(eventName, callback, options);
-  })
-  return els;
+  return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, options);
 }
 
 /**
@@ -45,10 +69,7 @@ const addEvent = (els, eventName, callback, options = {}) => {
  * @return {DOM Elements}
  */
 const removeEvent = (els, eventName, callback, options = {}) => {
-  [...els].forEach(el => {
-    el.removeEventListener(eventName, callback, options);
-  })
-  return els;
+  return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, options);
 }
 
 /**
@@ -59,10 +80,7 @@ const removeEvent = (els, eventName, callback, options = {}) => {
  * @return {DOM Elements}
  */
 const addClass = (els, className) => {
-  [...els].forEach(el => {
-    el.classList.add(className);
-  })
-  return els;
+  return addRemoveClass(CONSTANTS.ADD, els, className);
 }
 
 /**
@@ -73,10 +91,7 @@ const addClass = (els, className) => {
  * @return {DOM Elements}
  */
 const removeClass = (els, className) => {
-  [...els].forEach(el => {
-    el.classList.remove(className);
-  })
-  return els;
+  return addRemoveClass(CONSTANTS.REMOVE, els, className);
 }
 
 /**
@@ -235,7 +250,7 @@ const findParentElement = (startElement, targetClass) => {
  * Creates a JS controller with our typical rails pattern. All arguments are optional
  * but it would be useless if there weren't any. Options will eventually
  * include potential callbacks to execute at different points of the
- * controller lifecycle.
+ * controller lifecycle
  *
  * @param  {Object} modules           Collection of modules (optional)
  * @param  {Object} windowLoadModules Collection of modules to execute on windowLoad (optional)
