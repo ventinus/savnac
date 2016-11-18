@@ -136,7 +136,7 @@ const checkForClass = (els, targetClass) => {
   } else {
     for (let i = els.length - 1; i >= 0; i--) {
       if (els[i].classList.contains(targetClass)) hasClass = true;
-    })
+    }
   }
 
   return hasClass;
