@@ -254,7 +254,7 @@ const getCssEndEvent = (property) => {
   options[`${capitalizedProperty}`] = `webkit${capitalizedProperty}End`;
 
   for (o in options) {
-    if (el.style[o] !== undefined) {
+    if (options.hasOwnProperty(o) && el.style[o] !== undefined) {
       return options[o];
     }
   }
@@ -319,10 +319,12 @@ const controller = (
 
   const initModuleSet = (moduleGroup) => {
     for (let module in props[moduleGroup]) {
-      // check if module is a function which means it hasn't been created
-      // since modules return an object, they become objects with methods
-      if (!props[moduleGroup][module].init) props[moduleGroup][module] = props[moduleGroup][module]();
-      props[moduleGroup][module].init();
+      if (props[moduleGroup].hasOwnProperty(module)) {
+        // check if module is a function which means it hasn't been created
+        // since modules return an object, they become objects with methods
+        if (!props[moduleGroup][module].init) props[moduleGroup][module] = props[moduleGroup][module]();
+        props[moduleGroup][module].init();
+      }
     }
 
     return;
@@ -357,12 +359,16 @@ const controller = (
     if (!props.isEnabled) return;
 
     for (let module in props.modules) {
-      props.modules[module].disable();
+      if (props.modules.hasOwnProperty(module)) {
+        props.modules[module].disable();
+      }
     }
 
     if (props.isWindowLoadEnabled) {
       for (let module in props.windowLoadModules) {
-        props.windowLoadModules[module].disable();
+        if (props.windowLoadModules.hasOwnProperty(module)) {
+          props.windowLoadModules[module].disable();
+        }
       }
     }
 
