@@ -114,6 +114,27 @@ const toggleClass = (els, className) => {
 }
 
 /**
+ * Checks if an element or group of elements have a particular class.
+ *
+ * @param  {DOM Element} els Element or elements to test for class
+ * @param  {String} targetClass Class name to check on
+ * @return {Boolean} returns true or false
+ */
+const checkForClass = (els, targetClass) => {
+  let hasClass = false;
+
+  if (!els.length) {
+    if (els.classList.contains(targetClass)) hasClass = true;
+  } else {
+    for (let i = els.length - 1; i >= 0; i--) {
+      if (els[i].classList.contains(targetClass)) hasClass = true;
+    }
+  }
+
+  return hasClass;
+}
+
+/**
  * Finds the index of an element in a collection of elements.
  * Returns -1 in the event the element is not found.
  *
@@ -355,6 +376,7 @@ export {
   addClass,
   removeClass,
   toggleClass,
+  checkForClass,
   elementIndex,
   debounce,
   throttle,
