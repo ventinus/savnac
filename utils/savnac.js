@@ -134,8 +134,8 @@ const checkForClass = (els, targetClass) => {
   if (!els.length) {
     if (els.classList.contains(targetClass)) hasClass = true;
   } else {
-    [...els].forEach(el => {
-      if(el.classList.contains(targetClass)) hasClass = true;
+    for (let i = els.length - 1; i >= 0; i--) {
+      if (els[i].classList.contains(targetClass)) hasClass = true;
     })
   }
 
