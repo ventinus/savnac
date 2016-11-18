@@ -18,18 +18,24 @@ const _now = Date.now || function() {
 }
 
 // Consolidates looping over set of element to add or remove and event listener
-const addRemoveEvent = (action, els, eventName, callback, options = {}) => {
-  [...els].forEach(el => {
-    el[action](eventName, callback, options);
-  })
+const addRemoveEvent = function(action, els, eventName, callback, bindIndex, options) {
+  for (let i = els.length - 1; i >= 0; i--) {
+    if (bindIndex) {
+      (function(index) {
+        els[i][action](eventName, callback.bind(this, index), options);
+      })(i)
+    } else {
+      els[i][action](eventName, callback, options);
+    }
+  }
   return els;
 }
 
 // Consolidates looping over set of element to add or remove a class
 const addRemoveClass = (action, els, className) => {
-  [...els].forEach(el => {
-    el.classList[action](className);
-  })
+  for (let i = els.length - 1; i >= 0; i--) {
+    els[i].classList[action](className);
+  }
   return els;
 }
 
@@ -52,11 +58,12 @@ const toggleSingleClass = (el, className) => {
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to bind to
  * @param  {Function} Callback to execute when event occurs
+ * @param  {Boolean} bindIndex Passes the index to the callback
  * @param  {Object} Options to pass to addEventListener
  * @return {DOM Elements}
  */
-const addEvent = (els, eventName, callback, options = {}) => {
-  return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, options);
+const addEvent = (els, eventName, callback, bindIndex = false, options = {}) => {
+  return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, bindIndex, options);
 }
 
 /**
@@ -65,11 +72,12 @@ const addEvent = (els, eventName, callback, options = {}) => {
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to unbind to
  * @param  {Function} Callback to unbind
+ * @param  {Boolean} bindIndex Passes the index to the callback
  * @param  {Object} Options to pass to removeEventListener
  * @return {DOM Elements}
  */
-const removeEvent = (els, eventName, callback, options = {}) => {
-  return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, options);
+const removeEvent = (els, eventName, callback, bindIndex = false, options = {}) => {
+  return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, bindIndex, options);
 }
 
 /**
@@ -105,9 +113,9 @@ const toggleClass = (els, className) => {
   if (!els.length) {
     toggleSingleClass(els, className);
   } else {
-    [...els].forEach(el => {
-      toggleSingleClass(el, className);
-    })
+    for (let i = els.length - 1; i >= 0; i--) {
+      toggleSingleClass(els[i], className);
+    }
   }
 
   return els;
@@ -143,7 +151,13 @@ const checkForClass = (els, targetClass) => {
  * @return {Integer}
  */
 const elementIndex = (els, element) => {
-  return [...els].indexOf(element);
+  for (let i = els.length - 1; i >= 0; i--) {
+    if (els[i] === element) return i;
+  }
+
+  return -1;
+  // return [...els].indexOf(element);
+  // causes error in IE11: Object doesn't support property or method 'from'
 }
 
 /**
@@ -188,36 +202,36 @@ const debounce = (func, wait, immediate) => {
  * @return {Function}       Throttled function
  */
 const throttle = (func, wait, options) => {
-    let context, args, result;
-    let timeout = null;
-    let previous = 0;
-    if (!options) options = {};
-    const later = function() {
-      previous = options.leading === false ? 0 : _now();
-      timeout = null;
+  let context, args, result;
+  let timeout = null;
+  let previous = 0;
+  if (!options) options = {};
+  const later = function() {
+    previous = options.leading === false ? 0 : _now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  }
+  return function() {
+    let now = _now();
+    if (!previous && options.leading === false) previous = now;
+    let remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
       result = func.apply(context, args);
       if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
     }
-    return function() {
-      let now = _now();
-      if (!previous && options.leading === false) previous = now;
-      let remaining = wait - (now - previous);
-      context = this;
-      args = arguments;
-      if (remaining <= 0 || remaining > wait) {
-        if (timeout) {
-          clearTimeout(timeout);
-          timeout = null;
-        }
-        previous = now;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-      } else if (!timeout && options.trailing !== false) {
-        timeout = setTimeout(later, remaining);
-      }
-      return result;
-    }
+    return result;
   }
+}
 
 /**
  * Determines the correct event that corresponds with CSS transitionend or animationend.
@@ -376,6 +390,7 @@ export {
   addClass,
   removeClass,
   toggleClass,
+  toggleSingleClass,
   checkForClass,
   elementIndex,
   debounce,
@@ -383,6 +398,5 @@ export {
   getCssEndEvent,
   findParentElement,
   capitalizeFirstLetter,
-  toggleSingleClass,
   controller
 };
