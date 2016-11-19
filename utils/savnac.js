@@ -282,6 +282,15 @@ const findParentElement = (startElement, targetClass) => {
 }
 
 /**
+ * Checks browser and returns true is IE 11
+ *
+ * @return {Boolean}
+ */
+const isIE11 = () => {
+  return !(window.ActiveXObject) && "ActiveXObject" in window ? true : false;
+}
+
+/**
  * Creates a JS controller with our typical rails pattern. All arguments are optional
  * but it would be useless if there weren't any. Options will eventually
  * include potential callbacks to execute at different points of the
@@ -404,5 +413,6 @@ export {
   getCssEndEvent,
   findParentElement,
   capitalizeFirstLetter,
-  controller
+  controller,
+  isIE11
 };
