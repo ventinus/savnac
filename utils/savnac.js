@@ -291,6 +291,15 @@ const isIE11 = () => {
 }
 
 /**
+ * Checks if the device is an android device
+ *
+ * @return {Boolean}
+ */
+const isAndroid = () => {
+  return navigator.userAgent.match(/Android/i) ? true : false;
+}
+
+/**
  * Creates a JS controller with our typical rails pattern. All arguments are optional
  * but it would be useless if there weren't any. Options will eventually
  * include potential callbacks to execute at different points of the
@@ -414,5 +423,6 @@ export {
   findParentElement,
   capitalizeFirstLetter,
   controller,
-  isIE11
+  isIE11,
+  isAndroid
 };
