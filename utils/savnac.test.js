@@ -111,6 +111,12 @@ describe('finds a parent element', () => {
   it('finds a parent by id', () => {
     expect(savnac.findParentElement(treeChild, '#main')).toEqual(main);
   })
+
+  it('throws an invalid selection error', () => {
+    expect(() => {
+      savnac.findParentElement(treeChild, 'main');
+    }).toThrowError('targetSelector needs to start with a "#" or "."');
+  })
 })
 
 // savnac.capitalizeFirstLetter

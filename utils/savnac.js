@@ -270,6 +270,10 @@ const findParentElement = (startElement, targetSelector) => {
   let type = targetSelector.charAt(0);
   let name = targetSelector.slice(1);
 
+  if (type !== '#' && type !== '.') {
+    throw 'targetSelector needs to start with a "#" or "."'
+  }
+
   if (!parentElement) {
     return -1;
   } else {
