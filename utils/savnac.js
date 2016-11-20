@@ -122,24 +122,18 @@ const toggleClass = (els, className) => {
 }
 
 /**
- * Checks if an element or group of elements have a particular class.
+ * Checks if one or more elements in a  group have a particular class.
  *
  * @param  {DOM Element} els Element or elements to test for class
  * @param  {String} targetClass Class name to check on
  * @return {Boolean} returns true or false
  */
 const checkForClass = (els, targetClass) => {
-  let hasClass = false;
-
-  if (!els.length) {
-    if (els.classList.contains(targetClass)) hasClass = true;
-  } else {
-    for (let i = els.length - 1; i >= 0; i--) {
-      if (els[i].classList.contains(targetClass)) hasClass = true;
-    }
+  for (let i = els.length - 1; i >= 0; i--) {
+    if (els[i].classList.contains(targetClass)) return true;
   }
 
-  return hasClass;
+  return false;
 }
 
 /**
@@ -406,7 +400,6 @@ const controller = (
     modules: mergeModules
   };
 }
-
 
 export {
   addEvent,
