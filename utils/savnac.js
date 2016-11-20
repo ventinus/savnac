@@ -122,7 +122,7 @@ const toggleClass = (els, className) => {
 }
 
 /**
- * Checks if one or more elements in a  group have a particular class.
+ * Checks if at least one element in a group has a particular class.
  *
  * @param  {DOM Element} els Element or elements to test for class
  * @param  {String} targetClass Class name to check on
