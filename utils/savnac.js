@@ -257,22 +257,29 @@ const getCssEndEvent = (property) => {
 
 /**
  * Traverses up the DOM tree to find a parent element by checking the
- * classList of the parentElement against the targetClass. Returns -1
+ * id/classList of the parentElement against the targetSelector. Returns -1
  * if none found.
  *
  * @param  {DOM Element} startElement Starting element to start the search from
- * @param  {String} targetClass Class name to find the parentElement by
+ * @param  {String} targetSelector Id/Class name to find the parentElement by.
+ *                  Be sure to use '#' or '.' at the beginning.
  * @return {DOM Element} Found parent element
  */
-const findParentElement = (startElement, targetClass) => {
+const findParentElement = (startElement, targetSelector) => {
   let parentElement = startElement.parentElement;
+  let type = targetSelector.charAt(0);
+  let name = targetSelector.slice(1);
+
   if (!parentElement) {
     return -1;
-  } else if (parentElement.classList.contains(targetClass))  {
-    return parentElement;
+  } else {
+    if (type === '#' && parentElement.id === name ||
+        type === '.' && parentElement.classList.contains(name)) {
+      return parentElement;
+    }
   }
 
-  return findParentElement(parentElement, targetClass);
+  return findParentElement(parentElement, targetSelector);
 }
 
 /**
