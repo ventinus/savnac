@@ -18,15 +18,9 @@ const _now = Date.now || function() {
 }
 
 // Consolidates looping over set of element to add or remove and event listener
-const addRemoveEvent = function(action, els, eventName, callback, bindIndex, options) {
+const addRemoveEvent = function(action, els, eventName, callback, options) {
   for (let i = els.length - 1; i >= 0; i--) {
-    if (bindIndex) {
-      (function(index) {
-        els[i][action](eventName, callback.bind(this, index), options);
-      })(i)
-    } else {
-      els[i][action](eventName, callback, options);
-    }
+    els[i][action](eventName, callback, options);
   }
   return els;
 }
@@ -58,12 +52,11 @@ const toggleSingleClass = (el, className) => {
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to bind to
  * @param  {Function} Callback to execute when event occurs
- * @param  {Boolean} bindIndex Passes the index to the callback
  * @param  {Object} Options to pass to addEventListener
  * @return {DOM Elements}
  */
-const addEvent = (els, eventName, callback, bindIndex = false, options = {}) => {
-  return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, bindIndex, options);
+const addEvent = (els, eventName, callback, options = {}) => {
+  return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, options);
 }
 
 /**
@@ -72,12 +65,11 @@ const addEvent = (els, eventName, callback, bindIndex = false, options = {}) => 
  * @param  {DOM Elements} Collection of elements
  * @param  {String} Event type to unbind to
  * @param  {Function} Callback to unbind
- * @param  {Boolean} bindIndex Passes the index to the callback
  * @param  {Object} Options to pass to removeEventListener
  * @return {DOM Elements}
  */
-const removeEvent = (els, eventName, callback, bindIndex = false, options = {}) => {
-  return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, bindIndex, options);
+const removeEvent = (els, eventName, callback, options = {}) => {
+  return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, options);
 }
 
 /**

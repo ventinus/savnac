@@ -40,6 +40,14 @@ const constants = {
   FUN_CLASS: 'funClass'
 };
 
+const incrementClick = (e) => {
+  if (e.currentTarget.innerHTML === '') {
+    e.currentTarget.innerHTML = 0;
+  } else {
+    +e.currentTarget.innerHTML++;
+  }
+}
+
 // savnac.addClass
 test('adds class to list children', () => {
   for (let child of listChildren)
@@ -130,62 +138,50 @@ test('returns index of an element in a group', () => {
   expect(savnac.elementIndex(listChildren, listChildren[2])).toBe(2);
 })
 
+// add/remove events
 describe('it adds/removes event listeners to a group of elements', () => {
-  const onClick = (e) => {
-    if (e.currentTarget.innerHTML === '') {
-      e.currentTarget.innerHTML = 0;
-    } else {
-      +e.currentTarget.innerHTML++;
-    }
-  }
-
-  const onClickWithIndex = (index, e) => { e.currentTarget.innerHTML = index; }
 
   // savnac.addEvent
   it('adds a click handler to the buttons', () => {
-    savnac.addEvent(listChildren, 'click', onClick);
+    savnac.addEvent(listChildren, 'click', incrementClick);
     for (let button of listChildren) {
       expect(button.innerHTML).toEqual('');
       button.click();
-      expect(+button.innerHTML).toEqual(0);
+      expect(button.innerHTML).toEqual('0');
       button.click();
-      expect(+button.innerHTML).toEqual(1);
+      expect(button.innerHTML).toEqual('1');
       button.innerHTML = '';
     }
   })
 
-  it('adds a click handler to the buttons binding the index', () => {
-    savnac.addEvent(listChildren, 'click', onClickWithIndex, true);
-    for (let i = listChildren.length - 1; i >= 0; i--) {
-      expect(listChildren[i].innerHTML).toEqual('');
-      listChildren[i].click();
-      expect(+listChildren[i].innerHTML).toEqual(i);
-      listChildren[i].innerHTML = '';
-    }
-  })
-
-  // savnac.removeEvent, the onClickWithIndex is persistent,
+  // savnac.removeEvent, the incrementClick is persistent,
   // but lets test that part and make sure
   it('removes event handler from buttons', () => {
-    for (let i = listChildren.length - 1; i >= 0; i--) {
-      expect(listChildren[i].innerHTML).toEqual('');
-      listChildren[i].click();
-      expect(+listChildren[i].innerHTML).toEqual(i);
+    for (let button of listChildren) {
+      expect(button.innerHTML).toEqual('');
+      button.click();
+      expect(+button.innerHTML).toEqual(0);
     }
 
-    savnac.removeEvent(listChildren, 'click', onClickWithIndex, true);
+    savnac.removeEvent(listChildren, 'click', incrementClick);
 
-    for (let i = listChildren.length - 1; i >= 0; i--) {
-      expect(+listChildren[i].innerHTML).toEqual(i);
-      listChildren[i].click();
-      expect(+listChildren[i].innerHTML).toEqual(i);
-      listChildren[i].innerHTML = '';
+    for (let button of listChildren) {
+      expect(button.innerHTML).toEqual('0');
+      button.innerHTML = '';
+      button.click();
+      expect(button.innerHTML).toEqual('');
     }
   })
 })
 
-
 // savnac.debounce
+it('debounces a click event', () => {
+  // let btn = listChildren[0];
+  // console.log(btn.innerHTML)
+  // btn.click()
+  // console.log(btn.innerHTML)
+})
+
 // savnac.throttle
 // savnac.getCssEndEvent
 // savnac.controller
