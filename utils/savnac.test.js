@@ -151,12 +151,14 @@ describe('it adds/removes event listeners to a group of elements', () => {
       button.click();
       expect(button.innerHTML).toEqual('1');
       button.innerHTML = '';
+      button.removeEventListener('click', incrementClick);
     }
   })
 
   // savnac.removeEvent, the incrementClick is persistent,
   // but lets test that part and make sure
   it('removes event handler from buttons', () => {
+    savnac.addEvent(listChildren, 'click', incrementClick);
     for (let button of listChildren) {
       expect(button.innerHTML).toEqual('');
       button.click();
@@ -175,8 +177,42 @@ describe('it adds/removes event listeners to a group of elements', () => {
 })
 
 // savnac.debounce
-it('debounces a click event', () => {
-  // let btn = listChildren[0];
+jest.useFakeTimers();
+describe('debounces a click event', () => {
+  let btn = listChildren[0];
+  let debouncedLeadingFn = savnac.debounce(incrementClick, 200, true);
+  let debouncedTrailingFn = savnac.debounce(incrementClick, 200, false);
+
+  it('responds to only the first click', () => {
+    btn.addEventListener('click', debouncedLeadingFn);
+    expect(btn.innerHTML).toBe('');
+    for (var i = 10; i > 0; i--) {
+      btn.click();
+      if (i === 10) btn.innerHTML = 'The first click';
+    }
+    expect(setTimeout.mock.calls.length).toBe(10);
+    expect(setTimeout.mock.calls[0][1]).toBe(200);
+    jest.runAllTimers();
+    expect(btn.innerHTML).toBe('The first click')
+    btn.removeEventListener('click', debouncedLeadingFn);
+    btn.innerHTML = '';
+  })
+  console.log(btn.innerHTML)
+  it('responds to only the last click', () => {
+    btn.addEventListener('click', debouncedTrailingFn);
+    // expect(btn.innerHTML).toBe('');
+    for (var i = 10; i > 0; i--) {
+      btn.click();
+      if (i === 1) btn.innerHTML += ' The last click';
+    }
+    expect(setTimeout.mock.calls.length).toBe(20);
+    expect(setTimeout.mock.calls[0][1]).toBe(200);
+    // jest.runOnlyPendingTimers();
+    console.log(btn.innerHTML)
+    expect(btn.innerHTML).toBe('The last click 0')
+    btn.removeEventListener('click', debouncedTrailingFn);
+    btn.innerHTML = '';
+  })
   // console.log(btn.innerHTML)
   // btn.click()
   // console.log(btn.innerHTML)
