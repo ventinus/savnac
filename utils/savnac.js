@@ -248,6 +248,35 @@ const getCssEndEvent = (property) => {
 }
 
 /**
+ * Determines the correct CSS prefix for the browser for use such as checking
+ * against the windows computed stylesheet. Has only been tested to work
+ * with transform but wont abort with others.
+ *
+ * @param  {String} property Base CSS property
+ * @return {String}
+ */
+const getCssPrefix = (property) => {
+  if (property !== 'transform')
+    console.warn(`${property} has not been thoroughly tested. If correct, add to the list of verifieds.`)
+
+  let o;
+  let el = document.createElement('fakeelement');
+  let options = {};
+  let capitalizedProperty = capitalizeFirstLetter(property);
+  options[`${property}`] = `${property}`;
+  options[`O${capitalizedProperty}`] = `o${capitalizedProperty}`;
+  options[`${capitalizedProperty}`] = `${property}`;
+  options[`${capitalizedProperty}`] = `webkit${capitalizedProperty}`;
+
+  for (o in options) {
+    if (options.hasOwnProperty(o) && el.style[o] !== undefined) {
+      return options[o];
+    }
+  }
+  return false;
+}
+
+/**
  * Traverses up the DOM tree to find a parent element by checking the
  * id/classList of the parentElement against the targetSelector. Returns -1
  * if none found.
@@ -416,6 +445,7 @@ export {
   debounce,
   throttle,
   getCssEndEvent,
+  getCssPrefix,
   findParentElement,
   capitalizeFirstLetter,
   controller,
