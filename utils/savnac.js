@@ -228,7 +228,7 @@ const throttle = (func, wait, options) => {
  */
 const getCssEndEvent = (property) => {
   if (property !== 'transition' && property !== 'animation')
-    throw 'Property needs to be either transtion or animation';
+    throw new Error('Property needs to be either transtion or animation');
 
   let o;
   let el = document.createElement('fakeelement');
@@ -257,7 +257,7 @@ const getCssEndEvent = (property) => {
  */
 const getCssPrefix = (property) => {
   if (property !== 'transform')
-    console.warn(`${property} has not been thoroughly tested. If correct, add to the list of verifieds.`)
+    console.warn(`${property} has not been thoroughly tested. If correct, add to the list of verifieds.`);
 
   let o;
   let el = document.createElement('fakeelement');
