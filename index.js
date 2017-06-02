@@ -7,9 +7,9 @@ const CONSTANTS = {
   REMOVE_EVENT_LISTENER: 'removeEventListener'
 };
 
-const mobileRE = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
+export const mobileRE = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i;
 
-const forEach = (array, callback, scope) => {
+export const forEach = (array, callback, scope) => {
   const j = array.length
   for (let i = 0; i < j; i++) {
     callback.call(scope, array[i], i); // passes back stuff we need
@@ -17,30 +17,30 @@ const forEach = (array, callback, scope) => {
 };
 
 // Accepts a string and returns it with the first letter capitalized
-const capitalizeFirstLetter = (string) => {
+export const capitalizeFirstLetter = (string) => {
   return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
 }
 
 // Gets the current timestamp
-const _now = Date.now || function() {
+export const _now = Date.now || function() {
   return new Date().getTime();
 }
 
 // Consolidates looping over set of element to add or remove and event listener
-const addRemoveEvent = function(action, els, eventName, callback, options) {
+export const addRemoveEvent = function(action, els, eventName, callback, options) {
   forEach(els, el => el[action](eventNAme, callback, options))
   return els;
 }
 
 // Consolidates looping over set of element to add or remove a class
-const addRemoveClass = (action, els, className) => {
+export const addRemoveClass = (action, els, className) => {
   forEach(els, el => el.classList[action](className))
 
   return els;
 }
 
 // Toggles the class or an element
-const toggleSingleClass = (el, className) => {
+export const toggleSingleClass = (el, className) => {
   let { ADD, REMOVE } = CONSTANTS;
   let action = el.classList.contains(className) ? REMOVE : ADD;
   el.classList[action](className);
@@ -62,7 +62,7 @@ const toggleSingleClass = (el, className) => {
  * @param  {Object} Options to pass to addEventListener
  * @return {DOM Elements}
  */
-const addEvent = (els, eventName, callback, options = {}) => {
+export const addEvent = (els, eventName, callback, options = {}) => {
   return addRemoveEvent(CONSTANTS.ADD_EVENT_LISTENER, els, eventName, callback, options);
 }
 
@@ -76,7 +76,7 @@ const addEvent = (els, eventName, callback, options = {}) => {
  * @param  {Object} Options to pass to removeEventListener
  * @return {DOM Elements}
  */
-const removeEvent = (els, eventName, callback, options = {}) => {
+export const removeEvent = (els, eventName, callback, options = {}) => {
   return addRemoveEvent(CONSTANTS.REMOVE_EVENT_LISTENER, els, eventName, callback, options);
 }
 
@@ -87,7 +87,7 @@ const removeEvent = (els, eventName, callback, options = {}) => {
  * @param  {String} Class desired to add
  * @return {DOM Elements}
  */
-const addClass = (els, className) => {
+export const addClass = (els, className) => {
   return addRemoveClass(CONSTANTS.ADD, els, className);
 }
 
@@ -98,7 +98,7 @@ const addClass = (els, className) => {
  * @param  {String} Class desired to remove
  * @return {DOM Elements}
  */
-const removeClass = (els, className) => {
+export const removeClass = (els, className) => {
   return addRemoveClass(CONSTANTS.REMOVE, els, className);
 }
 
@@ -109,7 +109,7 @@ const removeClass = (els, className) => {
  * @param  {String} Class to toggle on each element
  * @return {DOM Elements}
  */
-const toggleClass = (els, className) => {
+export const toggleClass = (els, className) => {
   if (!els.length) {
     toggleSingleClass(els, className);
   } else {
@@ -128,7 +128,7 @@ const toggleClass = (els, className) => {
  * @param  {String} targetClass Class name to check on
  * @return {Boolean} returns true or false
  */
-const checkForClass = (els, targetClass) => {
+export const checkForClass = (els, targetClass) => {
   for (let i = els.length - 1; i >= 0; i--) {
     if (els[i].classList.contains(targetClass)) return true;
   }
@@ -144,7 +144,7 @@ const checkForClass = (els, targetClass) => {
  * @param  {DOM Element} Element to find the index of
  * @return {Integer}
  */
-const elementIndex = (els, element) => {
+export const elementIndex = (els, element) => {
   for (let i = els.length - 1; i >= 0; i--) {
     if (els[i] === element) return i;
   }
@@ -164,7 +164,7 @@ const elementIndex = (els, element) => {
  * @param  {Boolean} immmediate If true, triggers the function on the leading edge instead of the trailing
  * @return {Function}
  */
-const debounce = (func, wait, immediate) => {
+export const debounce = (func, wait, immediate) => {
   let timeout;
   return function() {
     let context = this, args = arguments;
@@ -195,7 +195,7 @@ const debounce = (func, wait, immediate) => {
  * @param  {Object} options Options to pass to the throttle function
  * @return {Function}       Throttled function
  */
-const throttle = (func, wait, options) => {
+export const throttle = (func, wait, options) => {
   let context, args, result;
   let timeout = null;
   let previous = 0;
@@ -234,7 +234,7 @@ const throttle = (func, wait, options) => {
  * @param  {String} property CSS property to get browser-specific event
  * @return {String}
  */
-const getCssEndEvent = (property) => {
+export const getCssEndEvent = (property) => {
   if (property !== 'transition' && property !== 'animation')
     throw new Error('Property needs to be either transtion or animation');
 
@@ -263,7 +263,7 @@ const getCssEndEvent = (property) => {
  * @param  {String} property Base CSS property
  * @return {String}
  */
-const getCssPrefix = (property) => {
+export const getCssPrefix = (property) => {
   if (property !== 'transform')
     console.warn(`${property} has not been thoroughly tested. If correct, add to the list of verifieds.`)
 
@@ -294,7 +294,7 @@ const getCssPrefix = (property) => {
  *                  Be sure to use '#' or '.' at the beginning.
  * @return {DOM Element} Found parent element
  */
-const findParentElement = (startElement, targetSelector) => {
+export const findParentElement = (startElement, targetSelector) => {
   let parentElement = startElement.parentElement;
   let type = targetSelector.charAt(0);
   let name = targetSelector.slice(1);
@@ -321,7 +321,7 @@ const findParentElement = (startElement, targetSelector) => {
  *
  * @return {Boolean}
  */
-const isIE11 = () => {
+export const isIE11 = () => {
   return !(window.ActiveXObject) && "ActiveXObject" in window ? true : false;
 }
 
@@ -330,7 +330,7 @@ const isIE11 = () => {
  *
  * @return {Boolean}
  */
-const isAndroid = () => {
+export const isAndroid = () => {
   return navigator.userAgent.match(/Android/i) ? true : false;
 }
 
@@ -345,7 +345,7 @@ const isAndroid = () => {
  * @param  {Object} options           Various callbacks to execute throughout lifecycle
  * @return {Object}                   Publicly exposed functions
  */
-const controller = (
+export const controller = (
   modules = {}
   // windowLoadModules = {},
   // options = {}
@@ -448,37 +448,11 @@ const controller = (
  *
  * @return {Boolean}
  */
-const supportsPassive = () => {
+export const supportsPassive = () => {
   let supportPassive = false;
   // create options object with a getter to see if its passive property is accessed
   let opts = Object.defineProperty && Object.defineProperty({}, 'passive', { get: function(){ supportPassive = true }});
   // create a throwaway element & event and (synchronously) test out our options
   document.addEventListener('test', function() {}, opts);
   return supportPassive;
-}
-
-module.exports = {
-  mobileRE: mobileRE,
-  forEach: forEach,
-  capitalizeFirstLetter: capitalizeFirstLetter,
-  _now: _now,
-  addRemoveEvent: addRemoveEvent,
-  addRemoveClass: addRemoveClass,
-  toggleSingleClass: toggleSingleClass,
-  addEvent: addEvent,
-  removeEvent: removeEvent,
-  addClass: addClass,
-  removeClass: removeClass,
-  toggleClass: toggleClass,
-  checkForClass: checkForClass,
-  elementIndex: elementIndex,
-  debounce: debounce,
-  throttle: throttle,
-  getCssEndEvent: getCssEndEvent,
-  getCssPrefix: getCssPrefix,
-  findParentElement: findParentElement,
-  isIE11: isIE11,
-  isAndroid: isAndroid,
-  controller: controller,
-  supportsPassive: supportsPassive
 }
