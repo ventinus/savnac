@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/ventinus/savnac#readme",
   "dependencies": {
-    "savnac-utils": "https://github.com/ventinus/savnac-utils"
+    "savnac-utils": "https://github.com/ventinus/savnac-utils",
+    "savnac-breakpoint": "https://github.com/ventinus/savnac-breakpoint"
   }
 }

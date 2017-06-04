@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"savnac-breakpoint@https://github.com/ventinus/savnac-breakpoint":
+  version "1.0.0"
+  resolved "https://github.com/ventinus/savnac-breakpoint#d2f2fae4b91272e6070719648b686bf1fde93e6c"
+  dependencies:
+    savnac-utils "https://github.com/ventinus/savnac-utils"
+
 "savnac-utils@https://github.com/ventinus/savnac-utils":
   version "1.1.2"
   resolved "https://github.com/ventinus/savnac-utils#79c9a5472d941ff372e20cb2d709004e1fad6aac"
