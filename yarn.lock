@@ -3,5 +3,5 @@
 
 
 "savnac-utils@https://github.com/ventinus/savnac-utils":
-  version "1.0.0"
-  resolved "https://github.com/ventinus/savnac-utils#871fafd91f4086826931aa277c65b513ca65acce"
+  version "1.1.2"
+  resolved "https://github.com/ventinus/savnac-utils#79c9a5472d941ff372e20cb2d709004e1fad6aac"

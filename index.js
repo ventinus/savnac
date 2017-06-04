@@ -1,2 +1,2 @@
-export {default as utils} from 'savnac-utils'
+export * from 'savnac-utils'
 // export {default as breakpoint} from './breakpoint'
