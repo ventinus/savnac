@@ -1,9 +1,13 @@
 {
   "name": "savnac",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "main": "build/savnac.js",
+  "module": "index",
+  "jsnext:main": "index",
+  "scripts": {
+    "build": "rm -rf build bundle.js && mkdir build && rollup -c && rollup -f umd -o build/savnac.js -- bundle.js && rm bundle.js && uglifyjs build/savnac.js -c -m -o build/savnac.min.js "
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ventinus/savnac.git"
@@ -15,7 +19,13 @@
   },
   "homepage": "https://github.com/ventinus/savnac#readme",
   "dependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "rollup": "0.41",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "savnac-breakpoint": "https://github.com/ventinus/savnac-breakpoint",
     "savnac-utils": "https://github.com/ventinus/savnac-utils",
-    "savnac-breakpoint": "https://github.com/ventinus/savnac-breakpoint"
+    "uglify-js": "^2.8.11"
   }
 }
