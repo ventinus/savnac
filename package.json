@@ -1,6 +1,6 @@
 {
   "name": "savnac",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "build/savnac.js",
   "module": "index",
@@ -18,14 +18,16 @@
     "url": "https://github.com/ventinus/savnac/issues"
   },
   "homepage": "https://github.com/ventinus/savnac#readme",
-  "dependencies": {
+  "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-latest": "^6.24.1",
     "rollup": "0.41",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "savnac-breakpoint": "https://github.com/ventinus/savnac-breakpoint",
-    "savnac-utils": "https://github.com/ventinus/savnac-utils",
     "uglify-js": "^2.8.11"
+  },
+  "dependencies": {
+    "savnac-breakpoint": "^1.0.11",
+    "savnac-utils": "^1.1.13"
   }
 }

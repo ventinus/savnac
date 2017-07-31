@@ -454,8 +454,8 @@ babel-register@^6.24.1:
     source-map-support "^0.4.2"
 
 babel-runtime@^6.18.0, babel-runtime@^6.22.0:
-  version "6.23.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
+  version "6.25.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.25.0.tgz#33b98eaa5d482bb01a8d1aa6b437ad2b01aec41c"
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
@@ -650,7 +650,7 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lodash@^4.2.0:
+lodash@^4.17.4, lodash@^4.2.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -761,8 +761,8 @@ resolve@1.1.7:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
 resolve@^1.1.6:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.3.3.tgz#655907c3469a8680dc2de3a275a8fdd69691f0e5"
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
   dependencies:
     path-parse "^1.0.5"
 
@@ -803,21 +803,16 @@ rollup@0.41:
   dependencies:
     source-map-support "^0.4.0"
 
-"savnac-breakpoint@https://github.com/ventinus/savnac-breakpoint":
-  version "1.0.10"
-  resolved "https://github.com/ventinus/savnac-breakpoint#1ee8faa52c47d9eb72465359019cf00a7f87fc60"
+savnac-breakpoint@^1.0.11:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-1.0.12.tgz#b8f1b57a5ed75a348f6a5efa8623368cdeec244c"
   dependencies:
-    babel-plugin-external-helpers "^6.22.0"
-    babel-preset-latest "^6.24.1"
-    rollup "0.41"
-    rollup-plugin-babel "^2.7.1"
-    rollup-plugin-node-resolve "^3.0.0"
-    savnac-utils "https://github.com/ventinus/savnac-utils"
-    uglify-js "^2.8.11"
+    lodash "^4.17.4"
+    savnac-utils "^1.1.13"
 
-"savnac-utils@https://github.com/ventinus/savnac-utils":
-  version "1.1.7"
-  resolved "https://github.com/ventinus/savnac-utils#13bd3cc22909b3010e9d16f65e7e20d9d1901f07"
+savnac-utils@^1.1.13:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.15.tgz#977708190fd978531b174baa081328cac9bebe5b"
 
 slash@^1.0.0:
   version "1.0.0"
