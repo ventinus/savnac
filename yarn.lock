@@ -804,15 +804,15 @@ rollup@0.41:
     source-map-support "^0.4.0"
 
 savnac-breakpoint@^1.0.11:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-1.0.12.tgz#b8f1b57a5ed75a348f6a5efa8623368cdeec244c"
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-1.0.13.tgz#be19d3b50749d70e34d5828a3d857df190755b78"
   dependencies:
     lodash "^4.17.4"
     savnac-utils "^1.1.13"
 
 savnac-utils@^1.1.13:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.15.tgz#977708190fd978531b174baa081328cac9bebe5b"
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.17.tgz#1dac1ebe4eaa924bdc837e8d0031a5ef92af75c6"
 
 slash@^1.0.0:
   version "1.0.0"
