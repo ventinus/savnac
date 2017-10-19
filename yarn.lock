@@ -810,9 +810,13 @@ savnac-breakpoint@^1.0.11:
     lodash "^4.17.4"
     savnac-utils "^1.1.13"
 
-savnac-utils@^1.1.13, savnac-utils@^1.1.18:
+savnac-utils@^1.1.13:
   version "1.1.18"
   resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.18.tgz#44220e8235b8a8ac8c26d9524a90469fa5bfcbdb"
+
+savnac-utils@^1.1.19:
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.19.tgz#f188874c69b0d8ac641f5b9e3537854fd3b521a1"
 
 slash@^1.0.0:
   version "1.0.0"
