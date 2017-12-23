@@ -650,6 +650,10 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -803,16 +807,12 @@ rollup@0.41:
   dependencies:
     source-map-support "^0.4.0"
 
-savnac-breakpoint@^1.0.11:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-1.0.13.tgz#be19d3b50749d70e34d5828a3d857df190755b78"
+savnac-breakpoint@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.1.tgz#4e5bc6d9601ba514ede8a1b8d1ce1fe14d60eb05"
   dependencies:
-    lodash "^4.17.4"
-    savnac-utils "^1.1.13"
-
-savnac-utils@^1.1.13:
-  version "1.1.18"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.18.tgz#44220e8235b8a8ac8c26d9524a90469fa5bfcbdb"
+    lodash.debounce "^4.0.8"
+    wolfy87-eventemitter "^5.2.4"
 
 savnac-utils@^1.1.19:
   version "1.1.19"
@@ -866,6 +866,10 @@ uglify-to-browserify@~1.0.0:
 window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
+
+wolfy87-eventemitter@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/wolfy87-eventemitter/-/wolfy87-eventemitter-5.2.4.tgz#5021d2952d3611cbcd195149711d9b595cd11d48"
 
 wordwrap@0.0.2:
   version "0.0.2"
