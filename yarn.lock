@@ -814,9 +814,9 @@ savnac-breakpoint@^2.0.3:
     lodash.debounce "^4.0.8"
     wolfy87-eventemitter "^5.2.4"
 
-savnac-utils@^1.1.22:
-  version "1.1.22"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.22.tgz#77a919b3618efdc6a887e606d49a43fa24e65467"
+savnac-utils@^1.1.23:
+  version "1.1.23"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.23.tgz#7d2a76efa9f1f8a9a5415eeae987de762e4c5e04"
 
 slash@^1.0.0:
   version "1.0.0"
