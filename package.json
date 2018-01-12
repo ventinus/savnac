@@ -1,10 +1,8 @@
 {
   "name": "savnac",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "main": "build/savnac.js",
-  "module": "index",
-  "jsnext:main": "index",
   "scripts": {
     "build": "rm -rf build bundle.js && mkdir build && rollup -c && rollup -f umd -o build/savnac.js -- bundle.js && rm bundle.js && uglifyjs build/savnac.js -c -m -o build/savnac.min.js "
   },
@@ -27,7 +25,7 @@
     "uglify-js": "^2.8.11"
   },
   "dependencies": {
-    "savnac-breakpoint": "^2.0.3",
-    "savnac-utils": "^1.1.23"
+    "savnac-breakpoint": "^2.0.4",
+    "savnac-utils": "^1.1.24"
   }
 }

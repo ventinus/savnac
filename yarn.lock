@@ -808,15 +808,15 @@ rollup@0.41:
     source-map-support "^0.4.0"
 
 savnac-breakpoint@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.3.tgz#dcc13270cc9dff111ba13f765a0b0164dc526398"
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.4.tgz#0ab564491d91c1653cb34273786feaab0b9b9295"
   dependencies:
     lodash.debounce "^4.0.8"
     wolfy87-eventemitter "^5.2.4"
 
 savnac-utils@^1.1.23:
-  version "1.1.23"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.23.tgz#7d2a76efa9f1f8a9a5415eeae987de762e4c5e04"
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.24.tgz#0592b83bc1c9792abdb6f6f756215c8de9d33815"
 
 slash@^1.0.0:
   version "1.0.0"
