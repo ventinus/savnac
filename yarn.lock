@@ -658,6 +658,10 @@ lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
+lodash@^4.17.5:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -807,16 +811,23 @@ rollup@0.41:
   dependencies:
     source-map-support "^0.4.0"
 
-savnac-breakpoint@^2.0.3:
+savnac-breakpoint@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.4.tgz#0ab564491d91c1653cb34273786feaab0b9b9295"
   dependencies:
     lodash.debounce "^4.0.8"
     wolfy87-eventemitter "^5.2.4"
 
-savnac-utils@^1.1.23:
-  version "1.1.24"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.24.tgz#0592b83bc1c9792abdb6f6f756215c8de9d33815"
+savnac-custom-select@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/savnac-custom-select/-/savnac-custom-select-1.0.0.tgz#ee0c3d9525da6ac7848499f6edf62003fbc3c056"
+  dependencies:
+    lodash "^4.17.5"
+    savnac-utils "^1.1.25"
+
+savnac-utils@^1.1.25:
+  version "1.1.25"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.25.tgz#514acc9fb54903eb39b0bf5f797178371e3f8576"
 
 slash@^1.0.0:
   version "1.0.0"

@@ -14,6 +14,6 @@ export default {
       exclude: 'node_modules/**' // only transpile our source code
     })
   ],
-  external: ['savnac-breakpoint', 'savnac-utils'],
+  external: ['savnac-breakpoint', 'savnac-utils', 'savnac-custom-select'],
   dest: 'bundle.js'
 };

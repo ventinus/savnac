@@ -10,10 +10,12 @@ function _interopDefault$1 (ex) { return (ex && (typeof ex === 'object') && 'def
 
 var savnacUtils = require('savnac-utils');
 var savnacBreakpoint = _interopDefault$1(require('savnac-breakpoint'));
+var savnacCustomSelect = _interopDefault$1(require('savnac-custom-select'));
 
 
 
 exports.breakpoint = savnacBreakpoint;
+exports.customSelect = savnacCustomSelect;
 Object.keys(savnacUtils).forEach(function (key) { exports[key] = savnacUtils[key]; });
 
 })));
