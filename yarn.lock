@@ -829,6 +829,10 @@ savnac-utils@^1.1.25:
   version "1.1.25"
   resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.25.tgz#514acc9fb54903eb39b0bf5f797178371e3f8576"
 
+savnac-utils@^1.1.26:
+  version "1.1.26"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.26.tgz#f17166fc8bc63fa7cb36b40299144f264a7c7a0d"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
