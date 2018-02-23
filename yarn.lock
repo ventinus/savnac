@@ -818,20 +818,16 @@ savnac-breakpoint@^2.0.4:
     lodash.debounce "^4.0.8"
     wolfy87-eventemitter "^5.2.4"
 
-savnac-custom-select@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/savnac-custom-select/-/savnac-custom-select-1.0.0.tgz#ee0c3d9525da6ac7848499f6edf62003fbc3c056"
+savnac-custom-select@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/savnac-custom-select/-/savnac-custom-select-1.0.1.tgz#e75dd54d69ed0d82a6fd939b6519f3ad91cd3c50"
   dependencies:
     lodash "^4.17.5"
     savnac-utils "^1.1.25"
 
-savnac-utils@^1.1.25:
-  version "1.1.25"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.25.tgz#514acc9fb54903eb39b0bf5f797178371e3f8576"
-
-savnac-utils@^1.1.26:
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.26.tgz#f17166fc8bc63fa7cb36b40299144f264a7c7a0d"
+savnac-utils@^1.1.25, savnac-utils@^1.1.27:
+  version "1.1.27"
+  resolved "https://registry.yarnpkg.com/savnac-utils/-/savnac-utils-1.1.27.tgz#527b1e1056429deaba7dcb5c93a7e44972fa251c"
 
 slash@^1.0.0:
   version "1.0.0"

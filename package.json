@@ -1,6 +1,6 @@
 {
   "name": "savnac",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "",
   "main": "build/savnac.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "savnac-breakpoint": "^2.0.4",
-    "savnac-custom-select": "^1.0.0",
-    "savnac-utils": "^1.1.26"
+    "savnac-custom-select": "^1.0.1",
+    "savnac-utils": "^1.1.27"
   }
 }
