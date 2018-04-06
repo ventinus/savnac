@@ -811,9 +811,9 @@ rollup@0.41:
   dependencies:
     source-map-support "^0.4.0"
 
-savnac-breakpoint@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.8.tgz#6fc7bd629ee91525f23976bbca114f48f1812801"
+savnac-breakpoint@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.9.tgz#c23420780c50fd84a66449a130868ec32f4d5958"
   dependencies:
     lodash.debounce "^4.0.8"
     wolfy87-eventemitter "^5.2.4"
