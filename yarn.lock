@@ -650,10 +650,6 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
-
 lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -811,11 +807,11 @@ rollup@0.41:
   dependencies:
     source-map-support "^0.4.0"
 
-savnac-breakpoint@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.9.tgz#c23420780c50fd84a66449a130868ec32f4d5958"
+savnac-breakpoint@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/savnac-breakpoint/-/savnac-breakpoint-2.0.11.tgz#85bf6d93749dd1f5dd1851a0365c982a35aa0d08"
   dependencies:
-    lodash.debounce "^4.0.8"
+    lodash "^4.17.5"
     wolfy87-eventemitter "^5.2.4"
 
 savnac-custom-select@^1.0.1:

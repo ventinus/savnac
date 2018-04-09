@@ -1,6 +1,6 @@
 {
   "name": "savnac",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "",
   "main": "build/savnac.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "uglify-js": "^2.8.11"
   },
   "dependencies": {
-    "savnac-breakpoint": "^2.0.9",
+    "savnac-breakpoint": "^2.0.11",
     "savnac-custom-select": "^1.0.1",
     "savnac-utils": "^1.1.27"
   }
